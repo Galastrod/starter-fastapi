@@ -4,6 +4,7 @@ margin: 0;
 outline: 0;
 border: 0;
 border-radius: 0;
+text-decoration: none;
 box-sizing: border-box;
 font-size: 16px;
 transition: .5s;
@@ -24,6 +25,14 @@ font-size: 3rem;
 
 h2 {
 font-size: 1.5rem;	
+}
+
+a {
+color: var(--darck)
+}
+
+a:hover {
+color: var(--active)
 }
 
 .container {
@@ -60,28 +69,38 @@ color: var( --text );
 	.b-search {
 	padding: 3rem 0;
 	}
-	
-		.b-search-inp {
-		display: flex;
-		padding: 1rem 0;
+
+		.search-header {
+		padding: 4rem 0;
 		}
 	
-		.search__inp {
-		padding: .5rem 1rem;
-		width: 100%;
-		}
+			.b-search-inp {
+			display: flex;
+			padding: 1rem 0;
+			}
 		
-		.search__btn {
-		background: var( --active );
-		color: var( --light );
-		padding: .5rem 1rem;
-		}
-		
-		.search__btn:hover {
-		background: var( --active-dbl );
-		}
+			.search__inp {
+			padding: .5rem 1rem;
+			width: 100%;
+			}
+			
+			.search__btn {
+			background: var( --active );
+			color: var( --light );
+			padding: .5rem 1rem;
+			}
+			
+			.search__btn:hover {
+			background: var( --active-dbl );
+			}
 
 .books_list {
 display: flex;
 flex-direction: column;
 }
+
+	.books_list__item {
+	display: flex;
+	padding: 1rem 0;
+	border: 0 0 .1rem 0 solid var( --active );
+	}

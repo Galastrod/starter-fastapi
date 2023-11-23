@@ -66,11 +66,11 @@ color: var( --text );
 	text-shadow:  .6rem .7rem 1rem var(--text);
 	}
 	
-	.b-search {
+	.main {
 	padding: 3rem 0;
 	}
 
-		.search-header {
+		.search {
 		padding: 4rem 0;
 		}
 	
@@ -101,6 +101,10 @@ flex-direction: column;
 
 	.books_list__item {
 	display: flex;
-	padding: 1rem 0;
-	border: 0 0 .1rem 0 solid var( --active );
+	padding: 2rem 0;
+	border-bottom: 0.1rem solid var(--active);
 	}
+
+		.books_list__item a {
+		display: block
+		}

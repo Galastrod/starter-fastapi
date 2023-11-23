@@ -13,8 +13,8 @@ const app = new Vue({
 	template:
 	`
 		<div class="app container">
-			<div class="b-search">
-				<div class="search-header">
+			<div class="main">
+				<div class="searchr">
 					<h2>Введите название книги...</h2>
 					<div class="b-search-inp">
 						<input class="search__inp" placeholder="Введите название книги.." v-model="search_string">
@@ -22,7 +22,7 @@ const app = new Vue({
 					</div>
 				</div>
 				
-				<div class="b-books-list">
+				<div class="books-list">
 					<h2>{{book_list_title}}</h2>
 					<div v-for="book in books_list">
 						<div class="books_list__item">
@@ -34,12 +34,12 @@ const app = new Vue({
 							<div>
 								<h3>Скачать: </h3>
 								<a v-if="book.links.download_fb2" :href="book.links.download_fb2">Fb2 </a>
-								<a v-if="book.links.download_epub" :href="book.links.download_epub">Fb2 </a>
-								<a v-if="book.links.download_mobi" :href="book.links.download_mobi">Fb2 </a>
+								<a v-if="book.links.download_epub" :href="book.links.download_epub">Epub </a>
+								<a v-if="book.links.download_mobi" :href="book.links.download_mobi">Mobi </a>
 							</div>
 						<div>
 					</div>
-				</div
+				</div>
 			</div>
 		</div>
 	`,

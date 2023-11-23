@@ -44,7 +44,7 @@ def collectionParse( xml_text ) :
 	books   = []
 	root    = Xml.fromstring( xml_text )
 
-	if root.find( __os + 'startIndex' ) != -1 :
+	if root.find( __os + 'startIndex' ) != None :
 		res['start_index']	= root.find( __os + 'startIndex' ).text
 		res['total_result'] 	= root.find( __os + 'totalResults' ).text
 		res['items_per_page'] 	= root.find( __os + 'itemsPerPage' ).text
@@ -68,6 +68,8 @@ def collectionParse( xml_text ) :
 # module Get source from flibusta
 def search( req ) :
 	response 	= http.get( f'{__flibusta_url}/opds/opensearch?searchTerm={req}' )
+	response.encoding = 'utf-8'
+
 	if response.status_code == 200 :
 		books 	= collectionParse( response.text )
 		return json.dumps( books )
@@ -76,6 +78,8 @@ def search( req ) :
 
 def getColection( url ) :
 	response 	= http( f'{__flibusta_url}{url}' ) 
+	response.encoding = 'utf-8'
+
 	if response.status_code == 200 :
 		books 	= collectionParse( response.text )
 		return json.dumps( books )
@@ -84,6 +88,8 @@ def getColection( url ) :
 	
 def getNewBoks() :
 	response 	= http.get( f'{__flibusta_url}/opds/new/0/new' )
+	response.encoding = 'utf-8'
+
 	return response.text
 	if response.status_code == 200 :
 		books 	= collectionParse( response.text )

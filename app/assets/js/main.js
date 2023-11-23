@@ -55,20 +55,18 @@ const app = new Vue({
 	{
 		
 		fetch('./new')
-			.then( res => res.text() )
+			.then( res => res.json() )
 			.then( res => 
 			{
-				// ITS TEXT RESPONSE
-				console.log( res )
-				/*
-					if( res.error )
+				console.table( res )
+
+				if( res.error )
 				{
 					console.error( res );
 					return false
 				};
 				this.book_list_title = "Новые книжули..."
 				this.books_list = res.books
-				*/
 			} );
 		
 	}

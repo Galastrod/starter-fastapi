@@ -90,7 +90,6 @@ def getNewBoks() :
 	response 	= http.get( f'{__flibusta_url}/opds/new/0/new' )
 	response.encoding = 'utf-8'
 
-	return response.text
 	if response.status_code == 200 :
 		books 	= collectionParse( response.text )
 		return json.dumps( books )

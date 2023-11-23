@@ -1,0 +1,87 @@
+* {
+padding: 0;
+margin: 0;
+outline: 0;
+border: 0;
+border-radius: 0;
+box-sizing: border-box;
+font-size: 16px;
+transition: .5s;
+font-family: Roboto, Sherif, Ubuntu;
+}
+
+:root {
+--light: #eee;
+--darck: #333;
+--text: #777;
+--active: #f36b6b;
+--active-dbl: #bd2929;
+}
+
+h1 {
+font-size: 3rem;
+}
+
+h2 {
+font-size: 1.5rem;	
+}
+
+.container {
+max-width: 1200px;
+margin: 0 auto;
+}
+
+@media screen and (max-width: 1200px)  {
+	.container {
+	padding: 0 .5rem;
+	}
+}
+
+.main-header-wrap {
+background: url(../img/bg.jpg);
+background-size: cover;
+background-repeat: no-repyat;
+background-attachment: fixed;
+background-position: center center;
+padding: 10rem 0;
+}
+
+.app
+{
+color: var( --text );
+}
+
+	.header-title
+	{
+	color: var(--light);
+	text-shadow:  .6rem .7rem 1rem var(--text);
+	}
+	
+	.b-search {
+	padding: 3rem 0;
+	}
+	
+		.b-search-inp {
+		display: flex;
+		padding: 1rem 0;
+		}
+	
+		.search__inp {
+		padding: .5rem 1rem;
+		width: 100%;
+		}
+		
+		.search__btn {
+		background: var( --active );
+		color: var( --light );
+		padding: .5rem 1rem;
+		}
+		
+		.search__btn:hover {
+		background: var( --active-dbl );
+		}
+
+.books_list {
+display: flex;
+flex-direction: column;
+}

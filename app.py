@@ -92,7 +92,7 @@ def getNewBoks() :
 
 	if response.status_code == 200 :
 		books 	= collectionParse( response.text )
-		return json.dumps( books )
+		return books
 	else :
 		return "{'error': 'No conected to Flibusta OPDS'}"
 # module Get source from flibusta end

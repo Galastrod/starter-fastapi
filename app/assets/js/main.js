@@ -53,19 +53,23 @@ const app = new Vue({
 	
 	created()
 	{
-		/*
+		
 		fetch('./new')
-			.then( res => res.json() )
+			.then( res => res.text() )
 			.then( res => 
 			{
-				if( res.error )
+				// ITS TEXT RESPONSE
+				console.log( res )
+				/*
+					if( res.error )
 				{
 					console.error( res );
 					return false
 				};
 				this.book_list_title = "Новые книжули..."
 				this.books_list = res.books
+				*/
 			} );
-		*/
+		
 	}
 });

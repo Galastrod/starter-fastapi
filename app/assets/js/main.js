@@ -34,12 +34,26 @@ const app = new Vue({
 	{
 		search()
 		{
-			console.log( this.search_string );
+			let req = this.search_string;
+
+			fetch( `./search?req=${req}` )
+				.then( res => res.json() )
+				.then( res => 
+				{
+					if( res.error )
+					{
+						console.error( res );
+						return false
+					};
+					this.book_list_title = `Найдено по запросу: "${req}"`;
+					this.books_list = res.books
+				} );
 		}
 	},
 	
 	created()
 	{
+		/*
 		fetch('./new')
 			.then( res => res.json() )
 			.then( res => 
@@ -52,5 +66,6 @@ const app = new Vue({
 				this.book_list_title = "Новые книжули..."
 				this.books_list = res.books
 			} );
+		*/
 	}
 });

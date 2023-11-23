@@ -47,7 +47,7 @@ margin: 0 auto;
 }
 
 .main-header-wrap {
-background: url(../img/bg.jpg);
+background: url(../img/bg_02.jpg);
 background-size: cover;
 background-repeat: no-repyat;
 background-attachment: fixed;
@@ -108,3 +108,7 @@ flex-direction: column;
 		.books_list__item a {
 		display: block
 		}
+
+			.col-2 {
+			width: 50%
+			}

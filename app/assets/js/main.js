@@ -26,12 +26,12 @@ const app = new Vue({
 					<h2>{{book_list_title}}</h2>
 					<div v-for="book in books_list">
 						<div class="books_list__item">
-							<div>
+							<div class="col-2">
 								<h3>{{ book.title }}</h3>
 								<a :href="book.links.author_link">{{book.author}}</a>
 								<a v-if="book.links.sequence_link" :href="book.links.sequence_link">Все книги серии</a>
 							</div>
-							<div>
+							<div class="col-2">
 								<h3>Скачать: </h3>
 								<a v-if="book.links.download_fb2" :href="book.links.download_fb2">Fb2 </a>
 								<a v-if="book.links.download_epub" :href="book.links.download_epub">Epub </a>

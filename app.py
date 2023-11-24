@@ -77,8 +77,10 @@ def search( req ) :
 		return "{'error': 'No conected to Flibusta OPDS'}"
 
 def getColection( url ) :
-	response 	= http.get( f'{__flibusta_url}{url}' ) 
-	response.encoding = 'utf-8'
+	response 	= http.get( f'{__flibusta_url}/opds{url}' ) 
+	#response.encoding = 'utf-8'
+	print(f'>>>>>>>>>>>>>>>>>>>>>{__flibusta_url}/opds{url}')
+	print(f'>>>>>>>>>>>>>>>>>>>>>{response.status_code}')
 
 	if response.status_code == 200 :
 		books 	= collectionParse( response.text )
@@ -127,10 +129,10 @@ def search( req ) :
 
 @app.get( '/author' )
 def searchBooks( id ) :
-	res = getColection( id )
+	res = getColection( f'{id}/time' )
 	return res
 
-@app.get( '/author' )
+@app.get( '/sequence' )
 def search( id ) :
 	res = getColection( id )
 	return res

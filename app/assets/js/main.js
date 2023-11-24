@@ -69,10 +69,10 @@ const app = new Vue({
 
 		getAuthor(ev)
 		{
-			ev.preventDefault();
+		ev.preventDefault();
 
-			let id = ev.target.href,
-				aut = ev.target.innerText;
+		let id = ev.target.href,
+			aut = ev.target.innerText;
 
 		id = id.slice( id.indexOf( '/author' ) )	
 
@@ -85,32 +85,31 @@ const app = new Vue({
 						console.error( res );
 						return false
 					};
-					this.book_list_title = `Все книги автора: "${auth}"`;
+					this.book_list_title = `Все книги автора: "${aut}"`;
 					this.books_list = res.books
 				} );
 		},
 
-		getSequencer(ev)
+		getSequence(ev)
 		{
-			ev.preventDefault();
+		ev.preventDefault();
 
-			let id = ev.target.href,
-				aut = ev.target.innerText;
+		let id = ev.target.href;
 
-				id = id.slice( id.indexOf( '/sequence' ) )	
+		id = id.slice( id.indexOf( '/sequence' ) )	
 
-			fetch( `./sequence?id=${id}` )
-				.then( res => res.json() )
-				.then( res => 
+		fetch( `./sequence?id=${id}` )
+			.then( res => res.json() )
+			.then( res => 
+			{
+				if( res.error )
 				{
-					if( res.error )
-					{
-						console.error( res );
-						return false
-					};
-					this.book_list_title = `Все книги автора: "${auth}"`;
-					this.books_list = res.books
-				} );
+					console.error( res );
+					return false
+				};
+				this.book_list_title = `Все книги серии`;
+				this.books_list = res.books
+			} );
 		}
 	},
 	

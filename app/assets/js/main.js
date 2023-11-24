@@ -71,10 +71,12 @@ const app = new Vue({
 		{
 			ev.preventDefault();
 
-			let req = ev.target.href,
+			let id = ev.target.href,
 				aut = ev.target.innerText;
 
-			fetch( `./author?id=${req}` )
+		id = id.slice( id.indexOf( '/author' ) )	
+
+			fetch( `./author?id=${id}` )
 				.then( res => res.json() )
 				.then( res => 
 				{
@@ -92,10 +94,12 @@ const app = new Vue({
 		{
 			ev.preventDefault();
 
-			let req = ev.target.href,
+			let id = ev.target.href,
 				aut = ev.target.innerText;
 
-			fetch( `./search?req=${req}` )
+				id = id.slice( id.indexOf( '/sequence' ) )	
+
+			fetch( `./sequence?id=${id}` )
 				.then( res => res.json() )
 				.then( res => 
 				{

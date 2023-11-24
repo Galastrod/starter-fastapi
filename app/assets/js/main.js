@@ -28,8 +28,8 @@ const app = new Vue({
 						<div class="books_list__item">
 							<div class="col-2">
 								<h3>{{ book.title }}</h3>
-								<a :href="book.links.author_link">{{book.author}}</a>
-								<a v-if="book.links.sequence_link" :href="book.links.sequence_link">Все книги серии</a>
+								<a :href="book.links.author_link" @click="getAuthor">{{book.author}}</a>
+								<a v-if="book.links.sequence_link" :href="book.links.sequence_link" @click="getSequence">Все книги серии</a>
 							</div>
 							<div class="col-2">
 								<h3>Скачать: </h3>
@@ -38,6 +38,9 @@ const app = new Vue({
 								<a v-if="book.links.download_mobi" :href="book.links.download_mobi">Mobi </a>
 							</div>
 						<div>
+					</div>
+
+					<div v-if="false" class="pugination">
 					</div>
 				</div>
 			</div>
@@ -60,6 +63,48 @@ const app = new Vue({
 						return false
 					};
 					this.book_list_title = `Найдено по запросу: "${req}"`;
+					this.books_list = res.books
+				} );
+		},
+
+		getAuthor(ev)
+		{
+			ev.preventDefault();
+
+			let req = ev.target.href,
+				aut = ev.target.innerText;
+
+			fetch( `./author?id=${req}` )
+				.then( res => res.json() )
+				.then( res => 
+				{
+					if( res.error )
+					{
+						console.error( res );
+						return false
+					};
+					this.book_list_title = `Все книги автора: "${auth}"`;
+					this.books_list = res.books
+				} );
+		},
+
+		getSequencer(ev)
+		{
+			ev.preventDefault();
+
+			let req = ev.target.href,
+				aut = ev.target.innerText;
+
+			fetch( `./search?req=${req}` )
+				.then( res => res.json() )
+				.then( res => 
+				{
+					if( res.error )
+					{
+						console.error( res );
+						return false
+					};
+					this.book_list_title = `Все книги автора: "${auth}"`;
 					this.books_list = res.books
 				} );
 		}

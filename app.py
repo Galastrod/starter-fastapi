@@ -123,5 +123,15 @@ def new() :
 def search( req ) :
 	res = search( req )
 	return res
+
+@app.get( '/author' )
+def search( id ) :
+	res = getColection( id )
+	return res
+
+@app.get( '/author' )
+def search( id ) :
+	res = getColection( id )
+	return res
 # fast init end
 ################################################################

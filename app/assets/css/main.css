@@ -47,9 +47,9 @@ margin: 0 auto;
 }
 
 .main-header-wrap {
-background: url(../img/bg.jpeg);
+background: linear-gradient(360deg, var(--darck) 20%, #00000000), url(../img/bg.jpeg);
 background-size: cover;
-background-repeat: no-repyat;
+background-repeat: no-repeat;
 background-attachment: fixed;
 background-position: center center;
 padding: 10rem 0;

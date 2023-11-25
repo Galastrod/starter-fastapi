@@ -127,14 +127,14 @@ def new() :
 	return res
 
 @app.get( '/search' )
-def search( req ) :
+def searchBooks( req ) :
 	print( req )
 	res = search( req )
 	return res
 
 @app.get( '/author' )
 def searchBooks( id ) :
-	res = getColection( f'{id}/time' )
+	res = search( f'{id}/time' )
 	return res
 
 @app.get( '/sequence' )

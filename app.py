@@ -66,7 +66,7 @@ def collectionParse( xml_text ) :
 
 ################################################################
 # module Get source from flibusta
-def search( req ) :
+def searchBooks( req ) :
 	response 	= http.get( f'{__flibusta_url}/opds/opensearch?searchTerm={req}' )
 	response.encoding = 'utf-8'
 
@@ -128,18 +128,18 @@ def new() :
 	return res
 
 @app.get( '/search' )
-def searchBooks( req ) :
+def search( req ) :
 	print( req )
-	res = search( req )
+	res = searchBooks( req )
 	return res
 
 @app.get( '/author' )
-def searchBooks( id ) :
-	res = search( f'{id}/time' )
+def author( id ) :
+	res = getColection( f'{id}/time' )
 	return res
 
 @app.get( '/sequence' )
-def search( id ) :
+def sequence( id ) :
 	res = getColection( id )
 	return res
 

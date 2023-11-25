@@ -100,7 +100,7 @@ def getNewBoks() :
 		return "{'error': 'No conected to Flibusta OPDS'}"
 
 def downloadBook( id ) :
-	file_url = f'{__flibusta_url}/{id}'
+	file_url = f'{__flibusta_url}{id}'
 	book = http.get( file_url )
 	return book.content
 # module Get source from flibusta end
@@ -145,6 +145,7 @@ def sequence( id ) :
 
 @app.get( '/download' )
 def download( id ) :
+	print( id )
 	res = downloadBook( id )
 	return res
 # fast init  && routing end

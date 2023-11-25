@@ -2,14 +2,14 @@
 
 const app = new Vue({
 	el: '.app',
-	
-	data: 
+
+	data:
 	{
 		book_list_title: undefined,
 		books_list: undefined,
 		search_string: undefined
 	},
-	
+
 	template:
 	`
 		<div class="app container">
@@ -21,7 +21,7 @@ const app = new Vue({
 						<button class="search__btn" @click="search">Искать</button>
 					</div>
 				</div>
-				
+
 				<div class="books-list">
 					<h2>{{book_list_title}}</h2>
 					<div v-for="book in books_list">
@@ -33,9 +33,9 @@ const app = new Vue({
 							</div>
 							<div class="col-2">
 								<h3>Скачать: </h3>
-								<a v-if="book.links.download_fb2" :href="book.links.download_fb2">Fb2 </a>
-								<a v-if="book.links.download_epub" :href="book.links.download_epub">Epub </a>
-								<a v-if="book.links.download_mobi" :href="book.links.download_mobi">Mobi </a>
+								<a v-if="book.links.download_fb2" :href="book.links.download_fb2" @click="downloadBook">Fb2 </a>
+								<a v-if="book.links.download_epub" :href="book.links.download_epub" @click="downloadBook">Epub </a>
+								<a v-if="book.links.download_mobi" :href="book.links.download_mobi" @click="downloadBook">Mobi </a>
 							</div>
 						<div>
 					</div>
@@ -46,8 +46,8 @@ const app = new Vue({
 			</div>
 		</div>
 	`,
-	
-	methods: 
+
+	methods:
 	{
 		search()
 		{
@@ -55,7 +55,7 @@ const app = new Vue({
 
 			fetch( `./search?req=${req}` )
 				.then( res => res.json() )
-				.then( res => 
+				.then( res =>
 				{
 					if( res.error )
 					{
@@ -69,16 +69,16 @@ const app = new Vue({
 
 		getAuthor(ev)
 		{
-		ev.preventDefault();
+			ev.preventDefault();
 
-		let id = ev.target.href,
-			aut = ev.target.innerText;
+			let id = ev.target.href,
+				aut = ev.target.innerText;
 
-		id = id.slice( id.indexOf( '/author' ) )	
+			id = id.slice( id.indexOf( '/author' ) )
 
 			fetch( `./author?id=${id}` )
 				.then( res => res.json() )
-				.then( res => 
+				.then( res =>
 				{
 					if( res.error )
 					{
@@ -92,33 +92,53 @@ const app = new Vue({
 
 		getSequence(ev)
 		{
-		ev.preventDefault();
+			ev.preventDefault();
 
+			let id = ev.target.href;
+
+			id = id.slice( id.indexOf( '/sequence' ) )
+
+			fetch( `./sequence?id=${id}` )
+				.then( res => res.json() )
+				.then( res =>
+				{
+					if( res.error )
+					{
+						console.error( res );
+						return false
+					};
+					this.book_list_title = `Все книги серии`;
+					this.books_list = res.books
+				} );
+		},
+
+		downloadBook(ev)
+		{
+		ev.preventDefault();
 		let id = ev.target.href;
 
-		id = id.slice( id.indexOf( '/sequence' ) )	
+		id = id.slice( id.indexOf( '/b' ) )
 
-		fetch( `./sequence?id=${id}` )
-			.then( res => res.json() )
-			.then( res => 
-			{
-				if( res.error )
-				{
-					console.error( res );
-					return false
-				};
-				this.book_list_title = `Все книги серии`;
-				this.books_list = res.books
-			} );
-		}
+		console.log( `./download?id=${id}` )
+
+		fetch(`./download?id=${id}`)
+	    .then(response => {
+	        if (!response.ok) {
+	            throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+	        }
+	        return response.arrayBufferr();})
+	    .then(buffer => {
+	       console.log(buffer);
+	    })
+	    .catch(err => console.error(err));
+			}
 	},
-	
+
 	created()
 	{
-		
 		fetch('./new')
 			.then( res => res.json() )
-			.then( res => 
+			.then( res =>
 			{
 				console.table( res )
 
@@ -130,6 +150,6 @@ const app = new Vue({
 				this.book_list_title = "Новые книжули..."
 				this.books_list = res.books
 			} );
-		
+
 	}
 });

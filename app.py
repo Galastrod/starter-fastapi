@@ -70,6 +70,9 @@ def search( req ) :
 	response 	= http.get( f'{__flibusta_url}/opds/opensearch?searchTerm={req}' )
 	response.encoding = 'utf-8'
 
+	print(f'>>>>>>>>>>>>>>>>>>>>>{__flibusta_url}/opds/opensearch?searchTerm={req}')
+	print(f'>>>>>>>>>>>>>>>>>>>>>{response.status_code}')
+
 	if response.status_code == 200 :
 		books 	= collectionParse( response.text )
 		return books
@@ -78,9 +81,7 @@ def search( req ) :
 
 def getColection( url ) :
 	response 	= http.get( f'{__flibusta_url}/opds{url}' )
-	#response.encoding = 'utf-8'
-	print(f'>>>>>>>>>>>>>>>>>>>>>{__flibusta_url}/opds{url}')
-	print(f'>>>>>>>>>>>>>>>>>>>>>{response.status_code}')
+	response.encoding = 'utf-8'
 
 	if response.status_code == 200 :
 		books 	= collectionParse( response.text )

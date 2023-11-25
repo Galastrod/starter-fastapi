@@ -147,7 +147,6 @@ def sequence( id ) :
 
 @app.get( '/download' )
 def download( id ) :
-	print( id )
 	res = downloadBook( id )
 	return Response( res, media_type="text/plain")
 # fast init  && routing end

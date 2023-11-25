@@ -33,9 +33,9 @@ const app = new Vue({
 							</div>
 							<div class="col-2">
 								<h3>Скачать: </h3>
-								<a v-if="book.links.download_fb2" :href="book.links.download_fb2" @click="downloadBook">Fb2 </a>
-								<a v-if="book.links.download_epub" :href="book.links.download_epub" @click="downloadBook">Epub </a>
-								<a v-if="book.links.download_mobi" :href="book.links.download_mobi" @click="downloadBook">Mobi </a>
+								<button class="btn" v-if="book.links.download_fb2" :data="book.links.download_fb2" @click="downloadBook">Fb2 </button>
+								<button class="btn" v-if="book.links.download_epub" :data=".links.download_epub" @click="downloadBook">Epub </button>
+								<button class="btn" v-if="book.links.download_mobi" :data="book.links.download_mobi" @click="downloadBook">Mobi </button>
 							</div>
 						<div>
 					</div>
@@ -114,24 +114,23 @@ const app = new Vue({
 
 		downloadBook(ev)
 		{
-		ev.preventDefault();
-		let id = ev.target.href;
+			let id = ev.target.getAttribute( 'data' );
 
-		id = id.slice( id.indexOf( '/b' ) )
+			id = id.slice( id.indexOf( '/b' ) )
 
-		console.log( `./download?id=${id}` )
+			console.log( `./download?id=${id}` )
 
-		fetch(`./download?id=${id}`)
-	    .then(response => {
-	        if (!response.ok) {
-	            throw new Error(`HTTP ${response.status} - ${response.statusText}`);
-	        }
-	        return response.arrayBufferr();})
-	    .then(buffer => {
-	       console.log(buffer);
-	    })
-	    .catch(err => console.error(err));
-			}
+			fetch(`./download?id=${id}`)
+				.then( res => res.arrayBuffer() )
+				.then( buffer => 
+				{
+					let 
+						file = new Blob( [buffer], {type: 'application/zip'}),
+						url = URL.createObjectURL(file);
+
+					window.open( url )
+				})
+		}
 	},
 
 	created()

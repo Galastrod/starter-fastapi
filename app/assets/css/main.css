@@ -35,6 +35,16 @@ a:hover {
 color: var(--active)
 }
 
+.btn {
+background: var( --active );
+color: var( --light );
+padding: .5rem 1rem;
+}
+
+.btn:hover {
+background: var( --active-dbl );
+}
+
 .container {
 max-width: 1200px;
 margin: 0 auto;

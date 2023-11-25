@@ -1,6 +1,7 @@
 ################################################################
 # module Constants
 from fastapi import FastAPI
+from fastapi.responses import Response
 from fastapi import Request
 from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
@@ -70,9 +71,6 @@ def searchBooks( req ) :
 	response 	= http.get( f'{__flibusta_url}/opds/opensearch?searchTerm={req}' )
 	response.encoding = 'utf-8'
 
-	print(f'>>>>>>>>>>>>>>>>>>>>>{__flibusta_url}/opds/opensearch?searchTerm={req}')
-	print(f'>>>>>>>>>>>>>>>>>>>>>{response.status_code}')
-
 	if response.status_code == 200 :
 		books 	= collectionParse( response.text )
 		return books
@@ -101,7 +99,11 @@ def getNewBoks() :
 
 def downloadBook( id ) :
 	file_url = f'{__flibusta_url}{id}'
+	print( file_url )
 	book = http.get( file_url )
+	book.encoding = 'utf-8'
+	print(f'>>>>>>>>>>>>>>>>>>>>>{book.status_code}')
+	print( book.headers )
 	return book.content
 # module Get source from flibusta end
 ################################################################
@@ -147,6 +149,6 @@ def sequence( id ) :
 def download( id ) :
 	print( id )
 	res = downloadBook( id )
-	return res
+	return Response( res, media_type="text/plain")
 # fast init  && routing end
 ################################################################

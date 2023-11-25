@@ -102,7 +102,7 @@ def getNewBoks() :
 def downloadBook( id ) :
 	file_url = f'{__flibusta_url}/{id}'
 	book = http.get( file_url )
-	return book
+	return book.content
 # module Get source from flibusta end
 ################################################################
 

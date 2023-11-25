@@ -55,7 +55,7 @@ def collectionParse( xml_text ) :
 
 		book['links'] 		= linksProcess( entry.findall( __atom + 'link' ) )
 		book['title'] 		= entry.find( __atom + 'title' ).text
-		book['author'] 		= entry.find( __atom + 'author//' ).text
+		book['author'] 		= entry.find( __atom + 'author' ).text
 
 		books.append( book )
 

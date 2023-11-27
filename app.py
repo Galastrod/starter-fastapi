@@ -103,11 +103,7 @@ def getNewBoks() :
 
 def downloadBook( id ) :
 	file_url = f'{__flibusta_url}{id}'
-	print( file_url )
 	book = http.get( file_url )
-	book.encoding = 'utf-8'
-	print(f'>>>>>>>>>>>>>>>>>>>>>{book.status_code}')
-	print( book.headers )
 	return book.content
 # module Get source from flibusta end
 ################################################################
@@ -135,7 +131,6 @@ def new() :
 
 @app.get( '/search' )
 def search( req ) :
-	print( req )
 	res = searchBooks( req )
 	return res
 

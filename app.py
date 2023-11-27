@@ -51,7 +51,7 @@ def collectionParse( xml_text ) :
 	books   = []
 	root    = Xml.fromstring( xml_text )
 
-	more_link = root.find( f'{__os}link[@rel="next"]' )
+	more_link = root.find( __atom + 'link[@rel="next"]' )
 
 	if more_link != None :
 		res['more_link'] = more_link.attrib['href'] 

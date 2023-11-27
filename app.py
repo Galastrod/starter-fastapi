@@ -93,6 +93,17 @@ def getColection( url ) :
 		return books
 	else :
 		return "{'error': 'No conected to Flibusta OPDS'}"
+	
+def getMoreBooks( url )
+	response 	= http.get( f'{__flibusta_url}{url}' )
+	response.encoding = 'utf-8'
+
+	if response.status_code == 200 :
+		books 	= collectionParse( response.text )
+		return books
+	else :
+		return "{'error': 'No conected to Flibusta OPDS'}"
+
 
 def getNewBoks() :
 	response 	= http.get( f'{__flibusta_url}/opds/new/0/new' )
@@ -149,7 +160,7 @@ def sequence( id ) :
 
 @app.get( '/more' )
 def more( url ) :
-	res = getColection( url )
+	res = getMoreBooks( url )
 	return res
 
 @app.get( '/download' )

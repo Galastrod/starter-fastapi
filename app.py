@@ -58,9 +58,9 @@ def collectionParse( xml_text ) :
 		book['links'] 		= linksProcess( entry.findall( __atom + 'link' ) )
 		book['title'] 		= entry.find( __atom + 'title' ).text
 		
-		author 		= entry.find( __atom + 'author' )
+		author = entry.find( __atom + 'author' )
 		if author != None : 
-			book['author'] = author.text 
+			book['author/name'] = author.text 
 		else : 
 			book['author'] = 'Нет автора'
 

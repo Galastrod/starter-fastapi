@@ -24,7 +24,7 @@ def linksProcess( links ) :
 			res['author_link'] = link.attrib['href']
 
 		if '/opds/author/' in link.attrib['href'] :
-			res['author_link'] = link.attrib['title'][25:]
+			res['author_name'] = link.attrib['title'][24:]
 
 		if '/opds/sequencebooks/' in link.attrib['href'] :
 			res['sequence_link'] = link.attrib['href']

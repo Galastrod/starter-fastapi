@@ -173,7 +173,7 @@ const app = new Vue({
 			.then( res => res.json() )
 			.then( res =>
 			{
-				console.table( res )
+				console.table( res.books )
 
 				if( res.error )
 				{

@@ -54,9 +54,13 @@ const app = new Vue({
 	{
 		more( page_index )
 		{
-			console.log( `Load: >>>>>> ${ this.more_link }` )
+			let more_link = this.more_link;
 
-			fetch( `./more?url=${this.more_link}` )
+			more_link = more_link.indexOf( '/opds/search?' ) ? more_link.replace( '/opds/search?',  '/opds/opensearch?' ) : more_link;
+
+			console.log( `Load: >>>>>> ${ more_link }` )
+
+			fetch( `./more?url=${more_link}` )
 				.then( res => res.json() )
 				.then( res =>
 				{
@@ -66,7 +70,7 @@ const app = new Vue({
 						return false
 					};
 
-					this.books_list = res.books;
+					this.books_list.push( res.books );
 					this.more_link = res.more_link;
 
 					console.table( res.book )
@@ -135,7 +139,7 @@ const app = new Vue({
 					};
 					this.book_list_title = `Все книги серии`;
 					this.books_list = res.books;
-					this.more__link = res.more_link;
+					this.more_link = res.more_link;
 				} );
 		},
 

@@ -184,10 +184,5 @@ const app = new Vue({
 				this.books_list = res.books;
 				this.more__link = res.more_link;
 			} );
-	},
-
-	components: 
-	{
-		'pugination': pugination
 	}
 });

@@ -23,6 +23,9 @@ def linksProcess( links ) :
 		if '/opds/author/' in link.attrib['href'] :
 			res['author_link'] = link.attrib['href']
 
+		if '/opds/author/' in link.attrib['href'] :
+			res['author_link'] = link.attrib['title'][25:]
+
 		if '/opds/sequencebooks/' in link.attrib['href'] :
 			res['sequence_link'] = link.attrib['href']
 
@@ -58,12 +61,6 @@ def collectionParse( xml_text ) :
 		book['links'] 		= linksProcess( entry.findall( __atom + 'link' ) )
 		book['title'] 		= entry.find( __atom + 'title' ).text
 		
-		author = entry.find( __atom + 'author' )
-		if author != None : 
-			book['author/name'] = author.text 
-		else : 
-			book['author'] = 'Нет автора'
-
 		books.append( book )
 
 	res['books'] = books

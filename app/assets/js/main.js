@@ -27,7 +27,7 @@ const app = new Vue({
 						<div class="books_list__item">
 							<div class="col-2">
 								<h2>{{ book.title }}</h2>
-								<a :href="book.links.author_link" @click="getAuthor">Автор: {{book.author}}</a>
+								<a :href="book.links.author_link" @click="getAuthor">Автор: {{book.links.author}}</a>
 								<a v-if="book.links.sequence_link" :href="book.links.sequence_link" @click="getSequence">Все книги серии: {{book.links.sequence_name}}</a>
 							</div>
 							<div class="col-2">

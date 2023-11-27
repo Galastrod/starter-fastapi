@@ -41,10 +41,6 @@ def linksProcess( links ) :
 		if link.attrib['type'] == 'application/x-mobipocket-ebook' :
 			res['download_mobi'] = link.attrib['href']
 
-		if link.attrib['rel'] == 'next' :
-			res['more_link'] = link.attrib['href']
-
-
 	return res
 
 def collectionParse( xml_text ) :
@@ -54,6 +50,13 @@ def collectionParse( xml_text ) :
 	res     = {}
 	books   = []
 	root    = Xml.fromstring( xml_text )
+
+	more_link = root.find( f'{__os}link[@rel="next"]' )
+
+	if more_link != None :
+		res['more_link'] = more_link.attrib['href'] 
+	else :
+		res['more_link'] = False
 
 	for entry in root.iter( __atom + 'entry' ) :
 		book = {}

@@ -27,7 +27,7 @@ const app = new Vue({
 						<div class="books_list__item">
 							<div class="col-2">
 								<h2>{{ book.title }}</h2>
-								<a :href="book.links.author_link" @click="getAuthor">Автор: {{book.links.author}}</a>
+								<a :href="book.links.author_link" @click="getAuthor">Автор: {{book.links.author_name}}</a>
 								<a v-if="book.links.sequence_link" :href="book.links.sequence_link" @click="getSequence">Все книги серии: {{book.links.sequence_name}}</a>
 							</div>
 							<div class="col-2">
@@ -53,6 +53,8 @@ const app = new Vue({
 	{
 		more( page_index )
 		{
+			console.log( `Load: >>>>>> ${ this.more_link }` )
+
 			fetch( `./more?url=${this.more_link}` )
 				.then( res => res.json() )
 				.then( res =>
@@ -65,6 +67,8 @@ const app = new Vue({
 
 					this.books_list = res.books;
 					this.more_link = res.more_link;
+
+					console.table( res.book )
 				} );
 		},
 

@@ -153,7 +153,7 @@ def sequence( id ) :
 	return res
 
 @app.get( '/more' )
-def sequence( url ) :
+def more( url ) :
 	res = getColection( url )
 	return res
 

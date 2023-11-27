@@ -13,7 +13,7 @@
 	
 	:root {
 	--light: #eee;
-	--darck: #333;
+	--darck: #484050;
 	--text: #cdbddd;
 	--bg: #696072;
 	--dbl-bg: #544a5e;
@@ -104,6 +104,7 @@
 	
 			.search {
 			padding: 4rem 0;
+			box-shadow: 0 0 .5rem var(--darck);	
 			}
 		
 				.b-search-inp {
@@ -139,7 +140,7 @@
 		padding: 2rem .5rem;
 		margin: 1rem 0;
 		border-bottom: 0.1rem solid var(--active);
-		box-shadow: 0 0 .5rem var(--text);	
+		box-shadow: 0 0 .5rem var(--darck);	
 		}
 	
 			.books_list__item a {
@@ -155,7 +156,7 @@
 					}
 	
 	.b-more-link {
-	display: flex;
+	display: flex;	
 	justify-content: center;
 	align-items: center;
 	padding: 3rem 0;

@@ -13,7 +13,7 @@ const app = new Vue({
 	`
 		<div class="app container">
 			<div class=main>
-				<div class=searchr>
+				<div class=search>
 					<h2>Что ищем?=)</h2>
 					<div class=b-search-inp>
 						<input class="search__inp" placeholder="Введите название книги..." v-model="search_string">
@@ -181,8 +181,8 @@ const app = new Vue({
 					return false
 				};
 				this.book_list_title = "Новые книжули..."
-				this.books_list = res.books;
-				this.more__link = res.more_link;
+				this.books_list.push( res.books );
+				this.more_link = res.more_link;
 			} );
 	}
 });

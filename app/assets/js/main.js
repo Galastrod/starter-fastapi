@@ -28,7 +28,7 @@ const app = new Vue({
 							<div class="col-2">
 								<h2>{{ book.title }}</h2>
 								<a :href="book.links.author_link" @click="getAuthor">Автор: {{book.author}}</a>
-								<a v-if="book.links.sequence_link" :href="book.links.sequence_link" @click="getSequence">Все книги серии: {{book.link.sequence_name}}</a>
+								<a v-if="book.links.sequence_link" :href="book.links.sequence_link" @click="getSequence">Все книги серии: {{book.links.sequence_name}}</a>
 							</div>
 							<div class="col-2">
 								<h2>Скачать: </h2>
@@ -62,7 +62,7 @@ const app = new Vue({
 						console.error( res );
 						return false
 					};
-					this.book_list_title = `Найдено по запросу: "${req}"`;
+
 					this.books_list = res.books;
 					this.more_link = res.more_link;
 				} );

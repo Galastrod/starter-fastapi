@@ -94,7 +94,7 @@ def getColection( url ) :
 	else :
 		return "{'error': 'No conected to Flibusta OPDS'}"
 	
-def getMoreBooks( url )
+def getMoreBooks( url ) :
 	response 	= http.get( f'{__flibusta_url}{url}' )
 	response.encoding = 'utf-8'
 

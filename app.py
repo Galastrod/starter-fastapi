@@ -27,7 +27,7 @@ def linksProcess( links ) :
 			res['sequence_link'] = link.attrib['href']
 
 		if '/opds/sequencebooks/' in link.attrib['href'] :
-			res['sequence_name'] = link.attrib['title'].slice( 15 )
+			res['sequence_name'] = link.attrib['title'][15:]
 
 		if link.attrib['type'] == 'application/fb2+zip' :
 			res['download_fb2'] = link.attrib['href']

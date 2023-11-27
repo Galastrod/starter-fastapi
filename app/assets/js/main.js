@@ -56,7 +56,7 @@ const app = new Vue({
 		{
 			let more_link = this.more_link;
 
-			more_link = more_link.indexOf( '/opds/search?' ) ? more_link.replace( '/opds/search?',  '/opds/opensearch?' ) : more_link;
+			more_link = more_link.indexOf( '/search?' ) ? more_link.replace( '/search?',  '/opensearch?' ) : more_link;
 
 			console.log( `Load: >>>>>> ${ more_link }` )
 

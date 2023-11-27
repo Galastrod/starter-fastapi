@@ -6,7 +6,8 @@ const app = new Vue({
 	data:
 	{
 		book_list_title: undefined,
-		books_list: undefined
+		books_list: undefined,
+		more_link: undefined
 	},
 
 	template:
@@ -42,7 +43,7 @@ const app = new Vue({
 					</div>
 				</div>
 
-				<div class="b-more-link">
+				<div v-if="more_link" class="b-more-link">
 					<button class="btn btn--more" @click="more">More</button>
 				</div>
 			</div>

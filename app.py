@@ -26,6 +26,9 @@ def linksProcess( links ) :
 		if '/opds/sequencebooks/' in link.attrib['href'] :
 			res['sequence_link'] = link.attrib['href']
 
+		if '/opds/sequencebooks/' in link.attrib['href'] :
+			res['sequence_name'] = link.attrib['title'].slice( 15 )
+
 		if link.attrib['type'] == 'application/fb2+zip' :
 			res['download_fb2'] = link.attrib['href']
 
@@ -34,6 +37,10 @@ def linksProcess( links ) :
 
 		if link.attrib['type'] == 'application/x-mobipocket-ebook' :
 			res['download_mobi'] = link.attrib['href']
+
+		if link.attrib['rel'] == 'next' :
+			res['more_link'] = link.attrib['href']
+
 
 	return res
 
@@ -44,11 +51,6 @@ def collectionParse( xml_text ) :
 	res     = {}
 	books   = []
 	root    = Xml.fromstring( xml_text )
-
-	if root.find( __os + 'startIndex' ) != None :
-		res['start_index']	= root.find( __os + 'startIndex' ).text
-		res['total_result'] 	= root.find( __os + 'totalResults' ).text
-		res['items_per_page'] 	= root.find( __os + 'itemsPerPage' ).text
 
 	for entry in root.iter( __atom + 'entry' ) :
 		book = {}
@@ -148,6 +150,11 @@ def author( id ) :
 @app.get( '/sequence' )
 def sequence( id ) :
 	res = getColection( id )
+	return res
+
+@app.get( '/more' )
+def sequence( url ) :
+	res = getColection( url )
 	return res
 
 @app.get( '/download' )

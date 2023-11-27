@@ -139,6 +139,7 @@
 		padding: 2rem .5rem;
 		margin: 1rem 0;
 		border-bottom: 0.1rem solid var(--active);
+		box-shadow: 0 0 .5rem var(--text);	
 		}
 	
 			.books_list__item a {
@@ -153,14 +154,13 @@
 					display: flex;
 					}
 	
-	.pugination {
+	.b-more-link {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	padding: 3rem 0;
 	}
-	
-		.pugination__curent-page {
-		background: var(--dbl-bg);
-		padding: .5rem 1rem;
+
+		.btn--more {
+		box-shadow: 0 0 .5rem var(--text);
 		}

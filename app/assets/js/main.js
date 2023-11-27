@@ -181,7 +181,7 @@ const app = new Vue({
 					return false
 				};
 				this.book_list_title = "Новые книжули..."
-				this.books_list.push( res.books );
+				this.books_list = res.books;
 				this.more_link = res.more_link;
 			} );
 	}

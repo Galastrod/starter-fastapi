@@ -104,9 +104,6 @@ def getColection( url ) :
 def getMoreBooks( url ) :
 	url = f'{__flibusta_url}{url}'
 
-	print( f'>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>' )
-	print( url )
-
 	response 	= http.get( url )
 	response.encoding = 'utf-8'
 

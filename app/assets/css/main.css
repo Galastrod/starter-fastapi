@@ -64,6 +64,7 @@
 	}
 	
 	.main-header-wrap {
+	background:  url(../img/bg.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;

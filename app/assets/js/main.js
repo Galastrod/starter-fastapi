@@ -237,14 +237,6 @@ const app = new Vue({
 
 	created()
 	{
-		let id = '' + Math.random(); 
-			id = parseInt( id.slice( 2, 3 ) );
-
-		document
-			.querySelector( '.main-header-wrap' )
-			.style
-			.backgroundImage = `url(./assets/img/bg_0${id}.jpg)`
-
 		document
 			.querySelector( '.loading-bar' )
 			.classList

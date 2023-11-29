@@ -38,6 +38,12 @@ def linksProcess( links ) :
 		if link.attrib['type'] == 'application/epub+zip' :
 			res['download_epub'] = link.attrib['href']
 
+		if link.attrib['type'] == 'application/rtf+zip' :
+			res['download_rtf'] = link.attrib['href']
+
+		if link.attrib['type'] == 'application/txt+zip' :
+			res['download_txt'] = link.attrib['href']
+
 		if link.attrib['type'] == 'application/x-mobipocket-ebook' :
 			res['download_mobi'] = link.attrib['href']
 
@@ -63,6 +69,7 @@ def collectionParse( xml_text ) :
 
 		book['links'] 		= linksProcess( entry.findall( __atom + 'link' ) )
 		book['title'] 		= entry.find( __atom + 'title' ).text
+		book['anot'] 		= entry.find( __atom + 'content' ).text
 		
 		books.append( book )
 
@@ -74,8 +81,8 @@ def collectionParse( xml_text ) :
 
 ################################################################
 # module Get source from flibusta
-def searchBooks( req ) :
-	response 	= http.get( f'{__flibusta_url}/opds/opensearch?searchTerm={req}' )
+def searchBooks( req, page_index ) :
+	response 	= http.get( f'{__flibusta_url}/opds/opensearch?searchTerm={req}&pageNumber={ page_index }' )
 	response.encoding = 'utf-8'
 
 	if response.status_code == 200 :
@@ -95,7 +102,12 @@ def getColection( url ) :
 		return "{'error': 'No conected to Flibusta OPDS'}"
 	
 def getMoreBooks( url ) :
-	response 	= http.get( f'{__flibusta_url}{url}' )
+	url = f'{__flibusta_url}{url}'
+
+	print( f'>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>' )
+	print( url )
+
+	response 	= http.get( url )
 	response.encoding = 'utf-8'
 
 	if response.status_code == 200 :
@@ -117,7 +129,8 @@ def getNewBoks() :
 
 def downloadBook( id ) :
 	file_url = f'{__flibusta_url}{id}'
-	book = http.get( file_url )
+	book = http.post( file_url )
+	print( book.headers )
 	return book.content
 # module Get source from flibusta end
 ################################################################
@@ -144,8 +157,8 @@ def new() :
 	return res
 
 @app.get( '/search' )
-def search( req ) :
-	res = searchBooks( req )
+def search( req, page_index ) :
+	res = searchBooks( req, page_index )
 	return res
 
 @app.get( '/author' )

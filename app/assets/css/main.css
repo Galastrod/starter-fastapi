@@ -148,6 +148,12 @@
 				.col-2 {
 				width: 50%
 				}
+
+				.book-info {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				}
 	
 					.download-links {
 					display: flex;
@@ -163,3 +169,43 @@
 		.btn--more {
 		box-shadow: 0 0 .5rem var(--text);
 		}
+
+.loading-bar {
+position: fixed;
+top: 0;
+left: 0;
+display: flex;
+justify-content: center;
+width: 100%;
+transform: translateY( -100% );
+z-index: 10;
+}
+
+	.loading-bar::before 
+	{
+	content: '';
+	padding: .5rem 0;
+	animation: loading-bar infinite;
+	animation-duration: 1s
+	}
+
+.loading-bar--active {
+transform: translateY( 0 );
+}
+
+@keyframes loading-bar {
+	0% {
+	background: var( --active-dbl );
+	width: 0;
+	}
+
+	50% {
+	background: var( --active );
+	width: 100%;
+	}
+
+	100% {
+	background: var( --active-dbl );
+	width: 0;
+	}
+}

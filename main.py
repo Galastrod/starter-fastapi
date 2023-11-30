@@ -176,6 +176,6 @@ def more( url ) :
 @app.get( '/download' )
 def download( id ) :
 	res = downloadBook( id )
-	return Response( res, media_type="text/plain")
+	return Response( res)
 # fast init  && routing end
 ################################################################

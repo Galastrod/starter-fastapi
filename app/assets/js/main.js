@@ -225,9 +225,9 @@ const app = new Vue({
 						.toggle( 'loading-bar--active' );
 
 					let 
-						file = new Blob( [buffer], {type: 'application/zip'}),
+						file_id = id.match( /\/b\/([0-9]*)\// )[1],
+						file = new File( [buffer],`${file_id}.zip`, {type: 'application/zip'}),
 						url = URL.createObjectURL(file);
-
 
 					console.log( file )
 					window.open( url )
